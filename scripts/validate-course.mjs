@@ -134,7 +134,11 @@ must(youtubePage.includes("Open in YouTube") && youtubeScript.includes("youtube-
 
 const landing = read("index.html");
 must(landing.includes("plans/index.html") && landing.includes("busy-work/index.html") && landing.includes("youtube-learning/index.html") && landing.includes("assessment/index.html") && landing.includes("folio.html"), "Landing navigation omits a required destination.");
-must(/2019 syllabus controls the 2026 course/i.test(landing) && /2024 syllabus is scheduled for implementation from 2027/i.test(landing), "Landing page does not state the verified 2026 syllabus implementation boundary.");
+must(
+  /Agricultural Technology 7–10 Syllabus \(2019\)[\s\S]*controls this 2026 student sequence/i.test(landing)
+    && /Agriculture Technology 7–10 Syllabus \(2024\)[\s\S]*mandatory from 2027/i.test(landing),
+  "Landing page does not state the verified 2026 syllabus implementation boundary.",
+);
 const plansPage = read("plans/index.html");
 must(plansPage.includes("Open larger") && plansPage.includes("Print / Save PDF") && plansPage.includes("Teacher to confirm"), "Plans route lacks its full-resolution, print or authority-boundary controls.");
 must(!/Border Leicester|Poll Dorset|White Suffolk/i.test(plansPage), "Plans route must not complete the student's variable-ram or terminal-sire breed choices.");
